@@ -44,8 +44,11 @@ class DefaultAcsClient implements IAcsClient
             $credential = $this->iClientProfile->getCredential();
         }
         $request = $this->prepareRequest($request);
-        $domain = EndpointProvider::findProductDomain($request->getRegionId(), $request->getProduct());
-
+        
+        $domain = $request->getDomain();
+        if ($domain == null) {
+            $domain = EndpointProvider::findProductDomain($request->getRegionId(), $request->getProduct());
+        }
         if(null == $domain)
         {
             throw new ClientException("Can not find endpoint to access.", "SDK.InvalidRegionId");

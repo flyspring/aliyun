@@ -12,6 +12,7 @@ abstract class AcsRequest
 	protected  $method;
 	protected  $protocolType = "http";
 	protected  $content;
+	protected  $domain;
 	
 	protected $queryParameters = array();
 	protected $headers = array();
@@ -113,7 +114,17 @@ abstract class AcsRequest
     public function setContent($content)
     {
         $this->content = $content;
-    } 
+    }
+    
+    public function getDomain()
+    {
+        return $this->domain;
+    }
+    
+    public function setDomain($domain)
+    {
+        return $this->domain = $domain;
+    }
         
         
     public function addHeader($headerKey, $headerValue)
